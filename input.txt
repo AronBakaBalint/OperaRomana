@@ -1,1 +1,1 @@
-0	0	Arial	32	Red	Dark Gray	English
+0	0	arial	12	white	white	English

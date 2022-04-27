@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
@@ -81,6 +82,7 @@ public class FileOperation extends javax.swing.JFrame implements java.awt.event.
 	private JSpinner distance2 = new JSpinner();
 	private JSpinner fSize = new JSpinner();
 
+	private JButton minimize = new JButton("Minimize");
 	private JButton exit = new JButton("Exit");
 	private JButton ok = new JButton();
 	private JButton save1 = new JButton();
@@ -204,6 +206,7 @@ public class FileOperation extends javax.swing.JFrame implements java.awt.event.
 		GraphicsDevice gd = getGraphicsConfiguration().getDevice();
 		gd.setFullScreenWindow(this);
 		validate();
+		setAlwaysOnTop(true);
 	}
 
 	private String[] getColorList() {
@@ -232,7 +235,7 @@ public class FileOperation extends javax.swing.JFrame implements java.awt.event.
 			file2.setText(Language.translate("noFileChosen"));
 		}
 		longestLine1.setText(Language.translate("longest line language") + 1);
-		longestLine2.setText(Language.translate("longest line language") + 1);
+		longestLine2.setText(Language.translate("longest line language") + 2);
 		text1Color.setText(Language.translate("color") + " " + Language.translate("language") + 1);
 		text2Color.setText(Language.translate("color") + " " + Language.translate("language") + 2);
 	}
@@ -349,7 +352,7 @@ public class FileOperation extends javax.swing.JFrame implements java.awt.event.
 						for (int i = 0; i < gd.length; i++) {
 							if (gd[i].equals(getGraphicsConfiguration().getDevice())) {
 								ce = new CellEditor(s);
-								ce.setLocation((int) gd[i].getDefaultConfiguration().getBounds().getCenterX(), getY());
+								ce.setLocation((int) gd[i].getDefaultConfiguration().getBounds().getCenterX() + 50, getY() + 300);
 								ce.setVisible(true);
 								ce.getButton().addActionListener(new Editor());
 							}
@@ -399,7 +402,9 @@ public class FileOperation extends javax.swing.JFrame implements java.awt.event.
 				String s = lang2ColorList.getSelectedItem().toString();
 				lang2Color = FileOperation.this.getColor(s);
 			}
-			updateText();
+			if(isVisibleFullscreen) {
+				updateText();
+			}
 			saveData();
 		}
 	}
@@ -682,6 +687,7 @@ public class FileOperation extends javax.swing.JFrame implements java.awt.event.
 		p1.add(ok);
 //		p1.add(search);
 		p1.add(languageSelector);
+		p1.add(minimize);
 		p1.add(exit);
 		p1.setPreferredSize(new Dimension(10000, 40));
 		search.addActionListener(new Searcher());
@@ -692,6 +698,7 @@ public class FileOperation extends javax.swing.JFrame implements java.awt.event.
 		exit.setBackground(Color.RED);
 		exit.setForeground(Color.WHITE);
 		exit.addActionListener(new Quit());
+		minimize.addActionListener(new Minimizer());
 		languageSelector.addActionListener(new LanguageSelector());
 		languageSelector.setSelectedItem(Language.currentLanguage);
 		add(p1);
@@ -758,6 +765,15 @@ public class FileOperation extends javax.swing.JFrame implements java.awt.event.
 		}
 		
 	}
+	
+	class Minimizer implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			setState(Frame.ICONIFIED);
+		}
+		
+	}
 
 	private ChangeListener getFontListener() {
 		ChangeListener listener1 = new ChangeListener() {
@@ -773,20 +789,20 @@ public class FileOperation extends javax.swing.JFrame implements java.awt.event.
 
 	private Color getColor(String s) {
 		Map<String, Color> colorList = new HashMap<>();
-		colorList.put("White", Color.white);
-		colorList.put("Black", Color.black);
-		colorList.put("Yellow", Color.yellow);
-		colorList.put("Orange", Color.orange);
-		colorList.put("Blue", Color.blue);
-		colorList.put("Red", Color.red);
-		colorList.put("Pink", Color.pink);
-		colorList.put("Cyan", Color.cyan);
-		colorList.put("Gray", Color.gray);
-		colorList.put("Magenta", Color.magenta);
-		colorList.put("Light Gray", Color.lightGray);
-		colorList.put("Dark Gray", Color.darkGray);
-		colorList.put("Green", Color.green);
-		return (Color) colorList.get(s);
+		colorList.put("white", Color.white);
+		colorList.put("black", Color.black);
+		colorList.put("yellow", Color.yellow);
+		colorList.put("orange", Color.orange);
+		colorList.put("blue", Color.blue);
+		colorList.put("red", Color.red);
+		colorList.put("pink", Color.pink);
+		colorList.put("cyan", Color.cyan);
+		colorList.put("gray", Color.gray);
+		colorList.put("magenta", Color.magenta);
+		colorList.put("light gray", Color.lightGray);
+		colorList.put("dark gray", Color.darkGray);
+		colorList.put("green", Color .green);
+		return (Color) colorList.get(s.toLowerCase());
 	}
 
 	public String toTxtForm(String s) {

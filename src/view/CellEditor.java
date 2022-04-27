@@ -13,21 +13,21 @@ public class CellEditor extends JFrame {
 	public CellEditor(String text) {
 		setTitle("Cell Editor");
 		setSize(435, 280);
-		setLocation(400, 300);
 		setLayout(null);
-		this.subText = new JTextArea(text);
-		this.subText.setBounds(10, 20, 400, 150);
-		this.subText.setFont(new Font("Arial", 0, 14));
-		add(this.subText);
-		this.ok.setBounds(180, 190, 60, 30);
-		add(this.ok);
+		subText = new JTextArea(text);
+		subText.setBounds(10, 20, 400, 150);
+		subText.setFont(new Font("Arial", 0, 14));
+		add(subText);
+		ok.setBounds(180, 190, 60, 30);
+		add(ok);
+		setAlwaysOnTop(true);
 	}
 
 	public JButton getButton() {
-		return this.ok;
+		return ok;
 	}
 
 	public String getText() {
-		return this.subText.getText();
+		return subText.getText();
 	}
 }

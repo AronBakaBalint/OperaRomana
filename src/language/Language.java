@@ -43,14 +43,14 @@ public class Language {
 		hungarian.put("search", "Keres");
 		hungarian.put("full screen", "Teljes Képernyő");
 		hungarian.put("longest line language", "Leghosszabb sor nyelv");
-		hungarian.put("offset", "Eltolás");
-		hungarian.put("color", "Szín");
+		hungarian.put("offset", "EltolÃ¡s");
+		hungarian.put("color", "SzÃ­n");
 		hungarian.put("save", "Save");
 		hungarian.put("nr.", "Sorsz.");
 		hungarian.put("noFileChosen", "No File Chosen");
-		hungarian.put("selectFile", "Fájl nincs kiválasztva");
-		hungarian.put("openCanvas", "Vetítővászon nincs megnyitva");
-		hungarian.put("noMoreResults", "Nincs több találat");
+		hungarian.put("selectFile", "FÃ¡jl nincs kivÃ¡lasztva");
+		hungarian.put("openCanvas", "VetÃ­tÅ‘vÃ¡szon nincs megnyitva");
+		hungarian.put("noMoreResults", "Nincs tÃ¶bb talÃ¡lat");
 		return hungarian;
 	}
 	
@@ -59,7 +59,7 @@ public class Language {
 		romanian.put("open", "Deschide");
 		romanian.put("language", "Limbă");
 		romanian.put("load", "Încarcă");
-		romanian.put("canvas", "Ecran de proiecție");
+		romanian.put("canvas", "Ecran de proiecÈ›ie");
 		romanian.put("search", "Caută");
 		romanian.put("full screen", "Ecran Complet");
 		romanian.put("longest line language", "Cea mai lungă linie limbă");
